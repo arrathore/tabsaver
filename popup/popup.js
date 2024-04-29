@@ -1,3 +1,4 @@
+// saves the tab urls from the active window to local storage
 function saveTabs() {
     // get the active window
     browser.windows.getCurrent({populate: true}).then((window) => {
@@ -18,8 +19,34 @@ function saveTabs() {
         });  
         
     });
+    // update the list
+    updateList();   
 }
 
+// pulls all windows currently in local storage and displays them in our unordered list
+function updateList() {
+    browser.storage.local.get().then((result) => {
+        const windowList = document.getElementById("window_list");
+        windowList.innerHTML = "";
+        
+        for (const key in result) {
+            if (result.hasOwnProperty(key)) {
+                const listItem = document.createElement("li");
+                listItem.textContent = key + ": " + result[key].join(", ");
+                windowList.appendChild(listItem);
+            }
+        }
+        
+        if (windowList.children.length === 0) {
+            const empty = document.createElement("li");
+            empty.textContent = "no saved windows";
+            windowList.appendChild(empty);
+        }
+        
+    });
+}
+
+updateList();
 const text = document.getElementById("window_name");
 const submit = document.getElementById("submit");
 submit.addEventListener("click", saveTabs);
