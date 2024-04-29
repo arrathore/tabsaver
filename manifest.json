@@ -13,6 +13,7 @@
       "scripting",
       "<all_urls>",
       "tabs",
+      "windows",
       "storage"
     ],
     
