@@ -9,8 +9,13 @@ function tabList() {
             urls.push(tab.url);
         });
         
-        console.log(urls);
-        // catch errors
+        // write each url to local storage
+        browser.storage.local.set({urls: urls}).then(() => {
+            console.log("urls saved: ", urls);
+        }).catch((error) => {
+            console.error("error saving to local storage: ", error);
+        });
+        
     }).catch((error) => {
         console.error("error during query:", error);
     })
