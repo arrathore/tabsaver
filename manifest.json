@@ -25,6 +25,8 @@
         "default_icon": {
             "16": "icons/page-16.png",
             "32": "icons/page-32.png"
-        }
+        },
+        "default_title": "tabsaver",
+        "default_popup": "popup/popup.html"
     }
 }

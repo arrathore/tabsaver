@@ -1,4 +1,4 @@
-/*function tabList() {
+function saveTabs() {
     // get the active window
     browser.windows.getCurrent({populate: true}).then((window) => {
         
@@ -9,7 +9,7 @@
             urls.push(tab.url);
         });
         
-        let key = "window_" + window.id;
+        let key = text.value;
         // write each url to local storage
         browser.storage.local.set({ [key]: urls}).then(() => {
             console.log("urls saved for", key, ": ", urls);
@@ -20,5 +20,6 @@
     });
 }
 
-browser.action.onClicked.addListener(tabList);
-*/
+const text = document.getElementById("window_name");
+const submit = document.getElementById("submit");
+submit.addEventListener("click", saveTabs);
