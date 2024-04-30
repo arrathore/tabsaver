@@ -14,7 +14,8 @@
       "<all_urls>",
       "tabs",
       "windows",
-      "storage"
+      "storage",
+      "webNavigation"
     ],
     
     "background": {
