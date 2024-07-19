@@ -3,3 +3,8 @@
     overflow-y: auto;
     padding: 0px;
 }
+
+#name_error {
+    color: red;
+    padding: 0px;
+}

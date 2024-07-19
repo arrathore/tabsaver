@@ -53,8 +53,17 @@ function updateList() {
 
 // saves the tab urls from the active window to local storage
 function saveTabs() {
+    // check if the user has entered a name
+    let key = text.value;
+    if (key.length == 0) {
+        name_error.innerHTML = "name cannot be empty";
+        event.preventDefault();
+        return;
+    }
+    
     // get the active window
     browser.windows.getCurrent({populate: true}).then((window) => {
+        name_error.innerHTML = "";
         
         // define an array to hold our urls
         let urls = [];
@@ -63,7 +72,6 @@ function saveTabs() {
             if (tab.url != "about:newtab") urls.push(tab.url);
         });
         
-        let key = text.value;
         // write each url to local storage
         browser.storage.local.set({ [key]: urls}).then(() => {
             console.log("urls saved for", key, ": ", urls);
@@ -73,10 +81,11 @@ function saveTabs() {
         
     });
     // update the list
-    updateList();   
+    updateList();
 }
 
 updateList();
 const text = document.getElementById("window_name");
 const submit = document.getElementById("submit");
+const name_error = document.getElementById("name_error");
 submit.addEventListener("click", saveTabs);
