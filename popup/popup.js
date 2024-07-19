@@ -60,7 +60,7 @@ function saveTabs() {
         let urls = [];
 
         window.tabs.forEach((tab) => {
-            urls.push(tab.url);
+            if (tab.url != "about:newtab") urls.push(tab.url);
         });
         
         let key = text.value;
