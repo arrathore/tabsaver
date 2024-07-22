@@ -16,7 +16,23 @@ function updateList() {
                 
                 // create the text content of the entry
                 const nameText = document.createElement("span");
-                nameText.textContent = key + ": " + result[key].join(", ");
+                
+                const details = document.createElement("details");
+                const summary = document.createElement("summary");
+                summary.textContent = key;
+                
+                const list = document.createElement("ul");
+                
+                for (const link in result[key]) {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = result[key][link];
+                    list.appendChild(listItem);
+                }
+                
+                details.appendChild(summary);
+                details.appendChild(list);
+                
+                nameText.append(details);
                 
                 // create the restore button which will bring the tabs back
                 const restoreButton = document.createElement("button");
@@ -74,7 +90,7 @@ function saveTabs() {
         
         // write each url to local storage
         browser.storage.local.set({ [key]: urls}).then(() => {
-            console.log("urls saved for", key, ": ", urls);
+            // console.log("urls saved for", key, ": ", urls);
         }).catch((error) => {
             console.error("error saving urls for", key, "to local storage: ", error);
         });  
