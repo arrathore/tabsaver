@@ -62,7 +62,6 @@ function updateList() {
             empty.textContent = "no saved windows";
             windowList.appendChild(empty);
         }
-        
     });
 }
 
