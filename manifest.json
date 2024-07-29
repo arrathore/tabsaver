@@ -2,7 +2,12 @@
 	"manifest_version": 3,
 	"name": "tabsaver",
 	"version": "1.0",
-    "id":"tabsaver@example.org",
+    
+    "browser_specific_settings": {
+      "gecko": {
+        "id": "tabsaver@example.com"
+      }
+    },
 
 	"description": "saves ur tabs",
 
